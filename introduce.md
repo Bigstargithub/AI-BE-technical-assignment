@@ -17,11 +17,19 @@
 ```mermaid
   A[인재 데이터 처리] --> B
   B[인재 데이터 기반 회사 정보 가져오기] --> C
-  C[회사 정보 기반하여 재직기간 뉴스 전체 가져오기] --> D
+  C[회사 정보 기반하여 재직기간 뉴스 Vector Search] --> D
   D[LLM 호출] --> E
   E[결과 반환]
 ```
 
 ## 모델
 
-GPT 5 모델 사용
+gpt-5-mini
+
+## 파일 구조
+
+- **main.py**: 메인 로직 파일
+- **llm.py**: llm 관련 로직 파일
+- **utils.py**: 기타 공통 함수 파일
+- **db.py**: db 연결 및 factory 작업 파일
+- **constant.py**: Constant 모여있는 파일

@@ -33,3 +33,16 @@ gpt-5-mini
 - **utils.py**: 기타 공통 함수 파일
 - **db.py**: db 연결 및 factory 작업 파일
 - **constant.py**: Constant 모여있는 파일
+
+## API 구조
+
+POST /
+body
+{
+file_path: str
+}
+response
+
+- 성공시: { status: 200, data: response}
+- 파일 경로가 누락이 되었을 때 { status: 400, message: "파일 경로를 입력하시기 바랍니다."}
+- 파일이 없을 때 { status: 400, "message": "파일이 없습니다."}

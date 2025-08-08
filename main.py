@@ -17,12 +17,18 @@ class TalentPayload(BaseModel):
 def post_talent(payload: TalentPayload):
     # 파일 경로 변수 체크
     if payload.file_path is None:
-        return "파일 경로를 입력하시기 바랍니다."
+        return {
+            "status": 400,
+            "message": "파일 경로를 입력하시기 바랍니다."
+        }
 
     # 인재 데이터 가져오기
     file_data = load_talent_data(payload.file_path)
     if file_data is None:
-        return "파일이 없습니다."
+        return {
+            "status": 500,
+            "message": "파일이 없습니다."
+        }
     
     # 데이터베이스 연결
     connection = connect_to_db()
@@ -84,7 +90,11 @@ def post_talent(payload: TalentPayload):
 
     # 뉴스 데이터 추출 후 응답 반환
     response = call_openai(system_prompt, user_prompt)
-    return response
+    return {
+        "status": 200,
+        "message": "success",
+        "data": response
+    }
 
 class CustomJSONEncoder(json.JSONEncoder):
     """
